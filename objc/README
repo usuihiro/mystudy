@@ -1,0 +1,5 @@
+# コマンドラインでコンパイル
+cc test.m -framework Foundation
+
+# C++に変換
+clang -rewrite-objc test.m
