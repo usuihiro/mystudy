@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0FDDE88D186AE66C00598FB3"
+               BlueprintIdentifier = "0FDDE8C8186AE6C400598FB3"
                BuildableName = "StoryBoardStudy.app"
                BlueprintName = "StoryBoardStudy"
                ReferencedContainer = "container:StoryBoardStudy.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0FDDE8A8186AE66C00598FB3"
+               BlueprintIdentifier = "0FDDE8EC186AE6C400598FB3"
                BuildableName = "StoryBoardStudyTests.xctest"
                BlueprintName = "StoryBoardStudyTests"
                ReferencedContainer = "container:StoryBoardStudy.xcodeproj">
@@ -42,7 +42,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0FDDE88D186AE66C00598FB3"
+            BlueprintIdentifier = "0FDDE8C8186AE6C400598FB3"
             BuildableName = "StoryBoardStudy.app"
             BlueprintName = "StoryBoardStudy"
             ReferencedContainer = "container:StoryBoardStudy.xcodeproj">
@@ -61,7 +61,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0FDDE88D186AE66C00598FB3"
+            BlueprintIdentifier = "0FDDE8C8186AE6C400598FB3"
             BuildableName = "StoryBoardStudy.app"
             BlueprintName = "StoryBoardStudy"
             ReferencedContainer = "container:StoryBoardStudy.xcodeproj">
@@ -79,7 +79,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0FDDE88D186AE66C00598FB3"
+            BlueprintIdentifier = "0FDDE8C8186AE6C400598FB3"
             BuildableName = "StoryBoardStudy.app"
             BlueprintName = "StoryBoardStudy"
             ReferencedContainer = "container:StoryBoardStudy.xcodeproj">
