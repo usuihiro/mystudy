@@ -1,0 +1,202 @@
+NAME
+    DCI - Collection of utilities for writing perl code that fits the DCI
+    methodology.
+
+DESCRIPTION
+    The DCI concept was created by Trygve Reenskaug, (inventor of MVC) and
+    James Coplien.
+
+    DCI Stands for Data, Context, Interactions. It was created to solve the
+    problem of unpredictable emergent behavior in networks of interacting
+    objects. This problem shows itself in complex OOP projects, most
+    commonly in projects with deep polymorphism. This is a problem that
+    Procedural/Imperative Programming does not have.
+
+    DCI does not replace OOP, instead it augments it with lessons learned
+    from looking back at Procedural Programming. It defines a way to
+    encapsulate use cases into a single place. This provides an advantage to
+    the programmer by reducing the number of interactions that need to be
+    tracked. Another advantage is the reduction of side-effects between
+    contexts.
+
+    Another way to look at it is that a DCI implementation is much more
+    maintainable as a project matures. Changes to requirements and
+    additional features cause clean OOP project to degrade into spaghetti.
+    DCI on the other hand maintains code clarity under changing
+    requirements.
+
+MORE ABOUT DCI
+    Look at DCI::Introduction for a complete introduction into DCI concepts.
+
+SYNOPSIS
+    This synopsis is very basic, see individual modules for better
+    module-specific examples. Also see DCI::Introduction if you do not yet
+    understand DCI concepts.
+
+  DUMB DATA CLASS
+        package Test::Data;
+        use strict;
+        use warnings;
+
+        sub new {
+            my $class = shift;
+            my ( $value ) = @_;
+            return bless( \$value, $class );
+        }
+
+        sub get_text { ${ $_[0] } }
+
+        sub set_text { 
+            my $self = shift;
+            my ( $new_val ) = @_;
+            $$self = $new_val;
+        }
+
+        1;
+
+  TRIVIAL CAST CLASS (ROLE)
+        package Test::Cast;
+        use strict;
+        use warnings;
+
+        use DCI qw/Cast/;
+
+        # Delegate the text() method to the 'core'
+        delegate qw/text/;
+
+        # Restrict core to being a Test::Data object.
+        require_core qw/Test::Data/;
+
+        # Generate some accessors which keep state in the Cast, but do not interfer
+        # with the Core object.
+        accessors qw/cache/;
+
+        # Add a method to our cast
+        sub render {
+            my $self = shift;
+
+            my $cached = $self->cache;
+
+            # text() is delgated to the underlying 'core'
+            $cached = $self->cache(
+                "The text is: '" . $self->text() . "'\n"
+            ) unless $cached;
+
+            return $cached;
+        }
+
+        1;
+
+  A CONTEXT
+        package Test::Context;
+        use strict;
+        use warnings;
+
+        use DCI qw/Context/;
+        use Test::Cast;
+
+        # Declare some required member objects
+        cast first => 'Test::Cast',
+             last  => 'Test::Cast';
+
+        # export a function named 'quick_render' that constructs the object from
+        # arguments, and returns the result of running the 'render()' method on the
+        # created object.
+        sugar quick_render => (
+            method  => 'render',
+            ordered => [qw/ first last /]
+        );
+
+        # A sugar export that takes named arguments.
+        sugar parametric_render => 'render';
+
+        # Method we use to kick-off the encapsulated task of the Context.
+        sub render { shift->first->render }
+
+        1;
+
+  PUTTING IT ALL TOGETHER
+        use Test::More;
+
+        use Test::Context qw/quick_render/;
+
+        is(
+            quick_render( "String A", "String B" ),
+            "The text is: 'String A'\nThe text is: 'String B'",
+            "Rendered first and last strings using quick sugar"
+        );
+
+        is(
+            parametric_render(
+                first => "String A",
+                last  => "String B",
+            ),
+            "The text is: 'String A'\nThe text is: 'String B'",
+            "Rendered first and last strings using named parameters"
+        );
+
+        my $it = Test::Context->new(
+            first => "String A",
+            last  => "String B",
+        );
+
+        is(
+            $it->render,
+            "The text is: 'String A'\nThe text is: 'String B'",
+            "Rendered first and last strings from onbject instance"
+        );
+
+        1;
+
+OBJECT TYPES
+  CONTEXT
+   SUGAR FUNCTIONS
+    See DCI::Meta::Context which actually exports the sugar.
+
+   METHODS
+    See DCI::Context the base class for all Casts.
+
+  CAST
+   SUGAR FUNCTIONS
+    See DCI::Meta::Cast which actually exports the sugar.
+
+   METHODS
+    See DCI::Cast the base class for all Casts.
+
+API STABILITY
+    Versions below 0.011 were a prototype, the API was subject to flux. For
+    0.011 the API has been completely re-written using the lessons learned
+    from the old API.
+
+    As of 0.011, the API can be considered stable. This means that changes
+    which break backwards compatibility will be few and far between.
+
+SEE ALSO
+    DCI::Meta::Context
+        Meta class for contexts
+
+    DCI::Meta::Cast
+        Meta class for casts
+
+    DCI::Context
+        Base class for contexts
+
+    DCI::Cast
+        Base class for casts
+
+ACHNOWLEDGEMENTS
+    The DCI concept was created by Trygve Reenskaug, (inventor of MVC) and
+    James Coplien.
+
+AUTHORS
+    Chad Granum exodist7@gmail.com
+
+COPYRIGHT
+    Copyright (C) 2011 Chad Granum
+
+    DCI is free software; Standard perl licence.
+
+    DCI is distributed in the hope that it will be useful, but WITHOUT ANY
+    WARRANTY; without even the implied warranty of MERCHANTABILITY or
+    FITNESS FOR A PARTICULAR PURPOSE. See the license for more details.
+

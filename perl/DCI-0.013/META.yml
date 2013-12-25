@@ -1,0 +1,46 @@
+---
+abstract: "Collection of utilities for writing perl code that fits the DCI\nmethodology."
+author:
+  - 'Chad Granum <exodist7@gmail.com>'
+build_requires:
+  Fennec: 1.012
+configure_requires:
+  Module::Build: 0.38
+dynamic_config: 1
+generated_by: 'Module::Build version 0.38, CPAN::Meta::Converter version 2.112150'
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: DCI
+provides:
+  DCI:
+    file: lib/DCI.pm
+    version: 0.013
+  DCI::Cast:
+    file: lib/DCI/Cast.pm
+    version: 0
+  DCI::Context:
+    file: lib/DCI/Context.pm
+    version: 0
+  DCI::Introduction:
+    file: lib/DCI/Introduction.pm
+    version: 0
+  DCI::Meta:
+    file: lib/DCI/Meta.pm
+    version: 0
+  DCI::Meta::Cast:
+    file: lib/DCI/Meta/Cast.pm
+    version: 0
+  DCI::Meta::Context:
+    file: lib/DCI/Meta/Context.pm
+    version: 0
+requires:
+  Carp: 0
+  Exporter::Declare: 0.105
+  Scalar::Util: 0
+resources:
+  bugtracker: http://github.com/exodist/DCI/issues
+  license: http://dev.perl.org/licenses/
+  repository: http://github.com/exodist/DCI
+version: 0.013

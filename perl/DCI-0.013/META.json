@@ -1,0 +1,78 @@
+{
+   "abstract" : "Collection of utilities for writing perl code that fits the DCI\nmethodology.",
+   "author" : [
+      "Chad Granum <exodist7@gmail.com>"
+   ],
+   "dynamic_config" : 1,
+   "generated_by" : "Module::Build version 0.38, CPAN::Meta::Converter version 2.112150",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "DCI",
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "Fennec" : "1.012"
+         }
+      },
+      "configure" : {
+         "requires" : {
+            "Module::Build" : "0.38"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Carp" : 0,
+            "Exporter::Declare" : "0.105",
+            "Scalar::Util" : 0
+         }
+      }
+   },
+   "provides" : {
+      "DCI" : {
+         "file" : "lib/DCI.pm",
+         "version" : "0.013"
+      },
+      "DCI::Cast" : {
+         "file" : "lib/DCI/Cast.pm",
+         "version" : 0
+      },
+      "DCI::Context" : {
+         "file" : "lib/DCI/Context.pm",
+         "version" : 0
+      },
+      "DCI::Introduction" : {
+         "file" : "lib/DCI/Introduction.pm",
+         "version" : 0
+      },
+      "DCI::Meta" : {
+         "file" : "lib/DCI/Meta.pm",
+         "version" : 0
+      },
+      "DCI::Meta::Cast" : {
+         "file" : "lib/DCI/Meta/Cast.pm",
+         "version" : 0
+      },
+      "DCI::Meta::Context" : {
+         "file" : "lib/DCI/Meta/Context.pm",
+         "version" : 0
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "http://github.com/exodist/DCI/issues"
+      },
+      "license" : [
+         "http://dev.perl.org/licenses/"
+      ],
+      "repository" : {
+         "url" : "http://github.com/exodist/DCI"
+      }
+   },
+   "version" : "0.013"
+}
